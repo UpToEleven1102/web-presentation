@@ -10,24 +10,25 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 let db = null;
 
 // documentation : http://mongodb.github.io/node-mongodb-native/3.3/tutorials/crud/
+
 client.connect(err => {
-    if (!err) {
-        console.log('connected to db')
-        db = client.db("web-presentation")
-        // client.close()
-    } else {
-        console.log('failed to connecto to DB', err)
+    if (err) {
+        console.log('failed to connect to DB', err);
+    }
+    else {
+        console.log('connected to DB');
+        db = client.db('web-presentation');
+        client.close();
     }
 });
-
-
-server.use(bodyParser.json())
-server.use(bodyParser.urlencoded({extended: true}));
 
 server.get('/', function (req, res) {
     // responds for requests to the root URL (/)
     res.send('Hello September!');
 });
+
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({extended: true}));
 
 server.post('/ping', function(req, res) {
     res.send('pong')
@@ -35,9 +36,7 @@ server.post('/ping', function(req, res) {
 
 server.post('/echo', function (req, res) {
     const data = req.body;
-
     console.log('received' , data)
-
     res.send(data)
 })
 
