@@ -17,6 +17,7 @@ client.connect(err => {
     }
     else {
         console.log('connected to DB');
+        // get db
         db = client.db('web-presentation');
         client.close();
     }
@@ -27,6 +28,7 @@ server.get('/', function (req, res) {
     res.send('Hello September!');
 });
 
+// ------------- process --------------
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
 
@@ -44,7 +46,7 @@ server.post('/students', function(req, res) {
     // students submit info
     // save to mongo
     res.send('Not implemented')
-})
+});
 
 server.get('/students', function (req, res) {
     // get urls from mongo
