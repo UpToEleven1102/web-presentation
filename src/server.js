@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 
 const server = express();
 
-const uri = "mongodb+srv://huyennguyen:test123@clusterhci-d2h5l.mongodb.net/test?retryWrites=true&w=majority";
+const uri = require('../config/keys').mongoURI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true  });
 
 let db = null;
