@@ -9,8 +9,7 @@ const uri = require('../config/keys').mongoURI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true  });
 let db = null;
 
-// documentation : http://mongodb.github.io/node-mongodb-native/3.3/tutorials/crud/
-
+// ─────────── Routes ────────────
 client.connect(err => {
     if (err) {
         console.log('failed to connect to DB', err);
@@ -60,6 +59,7 @@ app.get('/students', function (req, res) {
 
 // use websocket
 
+// ─────────── RUN APP ────────────
 const port = process.env.PORT || 3000;
 
 app.listen(port, function () {
