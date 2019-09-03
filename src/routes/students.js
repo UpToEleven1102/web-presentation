@@ -13,4 +13,4 @@ router.get('/students', function (req, res) {
     res.send(studentDB.getStudents())
 })
 
-module.exports = router
+module.exports = router;
