@@ -6,6 +6,7 @@ const studentDB = require('../db/students')
 router.post('/students', function(req, res) {
     // students submit info
     // save to mongo
+    console.log('posting student', req.body)
     studentDB.postStudent(req.body)
     res.send({}, 201)
 });

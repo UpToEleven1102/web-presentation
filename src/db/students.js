@@ -23,6 +23,7 @@ function getStudentByID(id) {
 }
 
 function postStudent(student) {
+    console.log('post student', student)
     data = [...data, student]
 }
 
