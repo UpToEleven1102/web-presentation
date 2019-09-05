@@ -12,7 +12,7 @@ const itemsRoutes = require('./routes/items')
 
 const app = express();
 
-db.init_db();
+db.initDB();
 
 // ─────────── Methods ────────────
 app.use(cors())
