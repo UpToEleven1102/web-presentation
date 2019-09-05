@@ -3,7 +3,7 @@ const uri = require('../../config/keys').mongoURI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true  });
 let db = null;
 
-function init_db() {
+function initDB() {
     db = 'not nll'
     client.connect(err => {
         if (err) {
@@ -23,5 +23,5 @@ function getClient() {
 // ─────────── Routes ────────────
 module.exports = {
     client: getClient,
-    init_db: init_db
+    initDB: initDB
 }

@@ -15,8 +15,8 @@ router.get('/students', function (req, res) {
 });
 
 router.put('/students/:id', function(req, res) {
-    result = studentDB.putStudent(parseInt(req.params.id), req.body)
+    result = studentDB.putStudent(parseInt(req.params.id), req.body);
     res.send(result)
-})
+});
 
 module.exports = router;
