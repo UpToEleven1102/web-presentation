@@ -11,9 +11,7 @@ const itemsRoutes = require('./routes/items')
 
 const app = express();
 
-db();
-
-app.use(express.json());
+db.init_db();
 
 // ─────────── Methods ────────────
 app.use(bodyParser.json());
@@ -26,7 +24,7 @@ app.use('/items', itemsRoutes);
 
 // use websocket
 app.use('/', function (req, res) {
-    res.send('todo api works!');
+    res.send('Api works');
 });
 
 // ─────────── RUN APP ────────────
