@@ -9,20 +9,23 @@ function getStudents() {
     // use db from index.js to query data from mongodb
     // get urls from mongo
 
+    let data = [];
     let cursor = db.client().collection('student')
         .find({});
 
     function iterateFunc(doc) {
-        console.log(JSON.stringify(doc, null, 4));
+        console.log(JSON.stringify(doc, null, 4))
+        data.push(JSON.stringify(doc, null, 4));
     }
 
     function errorFunc(error) {
         if (error){
-            console.log(error);
+            console.log('error: ', error);
         }
     }
+    cursor.forEach(iterateFunc, errorFunc);
 
-    return cursor.forEach(iterateFunc, errorFunc);
+    return data;
 }
 
 function getStudentByID(id) {
