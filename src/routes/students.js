@@ -11,6 +11,6 @@ router.post('/students', function(req, res) {
 
 router.get('/students', function (req, res) {
     res.send(studentDB.getStudents())
-})
+});
 
 module.exports = router;
