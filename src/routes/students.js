@@ -3,6 +3,8 @@
 const router = require('express').Router()
 const studentDB = require('../db/students')
 
+let presenting_student = null
+
 router.post('/students', function(req, res) {
     // students submit info
     // save to mongo
@@ -19,5 +21,10 @@ router.put('/students/:id', function(req, res) {
     result = studentDB.putStudent(parseInt(req.params.id), req.body);
     res.send(result)
 });
+
+router.post('/students/presenting', function(req, res) {
+    presenting_student = res.body
+    res.send({}, 200)
+})
 
 module.exports = router;

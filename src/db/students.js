@@ -1,33 +1,36 @@
 const db = require('./index');
 
 let data = [
-    {id: 1, name: 'Huyen', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'github.com'},
-    {id: 2, name: 'Dang', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/2', url: 'github.com'}
+    {id: 1, name: 'Huyen', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'github.com', presenting : true},
+    {id: 2, name: 'Ngoc', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/2', url: 'github.com', presenting: false}
 ]
 
+// function getStudents() {
+//     // use db from index.js to query data from mongodb
+//     // get urls from mongo
+//
+//     let data = [];
+//     let cursor = db.client().collection('student')
+//         .find({});
+//
+//     function iterateFunc(doc) {
+//         console.log(JSON.stringify(doc, null, 4))
+//         data.push(JSON.stringify(doc, null, 4));
+//     }
+//
+//     function errorFunc(error) {
+//         if (error){
+//             console.log('error: ', error);
+//         }
+//     }
+//     cursor.forEach(iterateFunc, errorFunc);
+//
+//     return data;
+// }
+
 function getStudents() {
-    // use db from index.js to query data from mongodb
-    // get urls from mongo
-
-    let data = [];
-    let cursor = db.client().collection('student')
-        .find({});
-
-    function iterateFunc(doc) {
-        console.log(JSON.stringify(doc, null, 4))
-        data.push(JSON.stringify(doc, null, 4));
-    }
-
-    function errorFunc(error) {
-        if (error){
-            console.log('error: ', error);
-        }
-    }
-    cursor.forEach(iterateFunc, errorFunc);
-
     return data;
 }
-
 function getStudentByID(id) {
 
     return data.filter(e => e.id === id)
