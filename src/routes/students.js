@@ -22,9 +22,14 @@ router.put('/students/:id', function(req, res) {
     res.send(result)
 });
 
-router.post('/students/presenting', function(req, res) {
-    presenting_student = res.body
-    res.send({}, 200)
+router.get('/students/presenting', function(req, res) {
+    res.send(presenting_student, 200)
 })
+
+router.post('/students/presenting', function(req, res) {
+    console.log('posting presenting student', req.body)
+    presenting_student = req.body
+    res.send({}, 200)
+});
 
 module.exports = router;
