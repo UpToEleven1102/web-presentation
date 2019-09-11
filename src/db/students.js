@@ -1,8 +1,8 @@
 const db = require('./index');
 
 let data = [
-    {id: 1, name: 'Huyen', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'http://file.vforum.vn/hinh/2018/02/ta-con-cho.jpg', presenting : true},
-    {id: 2, name: 'Ngoc', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/2', url: 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/2e/2ee1cef67376daed6f111b0a42668f78dde77247_full.jpg', presenting: false}
+    {id: 1, name: 'Huyen', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'https://www.cnbc.com/2018/12/07/richard-branson-daymond-john-and-others-what-they-wish-they-knew-at-25.html', presenting : true},
+    {id: 2, name: 'Ngoc', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/2', url: 'https://en.wikipedia.org/wiki/Special:Random', presenting: false}
 ]
 
 // function getStudents() {
