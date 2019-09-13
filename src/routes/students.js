@@ -14,22 +14,22 @@ router.post('/students', function(req, res) {
 });
 
 router.get('/students', function (req, res) {
-    res.send(studentDB.getStudents())
+    res.status(200).send(studentDB.getStudents())
 });
 
 router.put('/students/:id', function(req, res) {
     result = studentDB.putStudent(parseInt(req.params.id), req.body);
-    res.send(result)
+    res.status(200).send(result)
 });
 
 router.get('/students/presenting', function(req, res) {
-    res.send(presenting_student, 200)
+    res.status(200).send(presenting_student)
 })
 
 router.post('/students/presenting', function(req, res) {
     console.log('posting presenting student', req.body)
-    presenting_student = req.body
-    res.send({}, 200)
+    presenting_student = req.body.id ? req.body : null
+    res.status(200).send({})
 });
 
 module.exports = router;

@@ -8,7 +8,7 @@ const db = require('./db/index');
 const generalRoutes = require('./routes/main')
 const studentRoutes = require('./routes/students')
 const presentationRoutes = require('./routes/presentations')
-const itemsRoutes = require('./routes/items')
+const scoreRoutes = require('./routes/scores')
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(generalRoutes)
 app.use(studentRoutes)
 app.use(presentationRoutes)
-app.use('/items', itemsRoutes);
+app.use('/scores', scoreRoutes)
 
 // use websocket
 app.use('/', function (req, res) {
