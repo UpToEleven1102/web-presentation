@@ -26,7 +26,7 @@ app.use('/scores', scoreRoutes)
 
 // use websocket
 app.use('/', function (req, res) {
-    res.send('Api works');
+    res.status(404).send('Api doesn\'t work');
 });
 
 // ─────────── RUN APP ────────────

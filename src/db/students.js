@@ -1,4 +1,5 @@
 const db = require('./index');
+const scoreDB = require('./scores')
 
 let data = [
     {id: 1, name: 'Huyen', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'https://en.wikipedia.org/wiki/History_of_display_technology'},
@@ -9,34 +10,16 @@ let data = [
 
 ]
 
-// function getStudents() {
-//     // use db from index.js to query data from mongodb
-//     // get urls from mongo
-//
-//     let data = [];
-//     let cursor = db.client().collection('student')
-//         .find({});
-//
-//     function iterateFunc(doc) {
-//         console.log(JSON.stringify(doc, null, 4))
-//         data.push(JSON.stringify(doc, null, 4));
-//     }
-//
-//     function errorFunc(error) {
-//         if (error){
-//             console.log('error: ', error);
-//         }
-//     }
-//     cursor.forEach(iterateFunc, errorFunc);
-//
-//     return data;
-// }
-
 function getStudents() {
+    data.forEach(e => {
+        const avg = scoreDB.getPresenterAvgScore(e.id)
+        e.score = avg ? avg : {}
+    })
+
     return data;
 }
-function getStudentByID(id) {
 
+function getStudentByID(id) {
     return data.filter(e => e.id === id)
 }
 
