@@ -30,6 +30,7 @@ function getPresenterAvgScore(id) {
     let avg = data.length > 0 ? {}: null
     let keys = data.length > 0 ? Object.keys(data[0]).filter(key => key.indexOf('criteria_') === 0) : []
     for (let key of keys) {
+        avg.presenter_id = data[0].presenter_id
         avg[key] = 0
     }
     console.log('avg ', avg)
