@@ -42,7 +42,7 @@ function getPresenterAvgScore(id) {
 
     if (avg) {
         for (let key of keys) {
-            avg[key] /= data.length
+            avg[key] = parseFloat((avg[key]/(data.length)).toFixed(2))
         }
         delete avg.scorer_name
         delete avg.user_id

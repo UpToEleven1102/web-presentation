@@ -24,9 +24,8 @@ app.use(studentRoutes)
 app.use(presentationRoutes)
 app.use('/scores', scoreRoutes)
 
-// use websocket
 app.use('/', function (req, res) {
-    res.status(404).send('Api doesn\'t work');
+    res.status(200).send('Api works');
 });
 
 // ─────────── RUN APP ────────────
