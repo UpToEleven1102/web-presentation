@@ -13,6 +13,8 @@ let data = [
 function getStudents() {
     data.forEach(e => {
         const avg = scoreDB.getPresenterAvgScore(e.id)
+        const scores = scoreDB.getScoreByUserID(e.id)
+        e.num_scored = scores.length
         e.score = avg ? avg : null
     })
 

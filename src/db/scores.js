@@ -16,8 +16,8 @@ function getScoreByPresenterID(id) {
     return scores.filter(score => score.presenter_id == id)
 }
 
-function getScoreByScorerName(name) {
-    return scores.filter(score => score.scorer_name == name)
+function getScoreByScorerID(id) {
+    return scores.filter(score => score.user_id == id)
 }
 
 function getScores() {
@@ -54,7 +54,7 @@ function getPresenterAvgScore(id) {
 module.exports = {
     data: scores,
     getScoreByPresenterID: getScoreByPresenterID,
-    getScoreByScorerName: getScoreByScorerName,
+    getScoreByUserID: getScoreByScorerID,
     createScore: createScore,
     getScores: getScores,
     getPresenterAvgScore: getPresenterAvgScore
