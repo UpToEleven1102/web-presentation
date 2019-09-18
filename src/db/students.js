@@ -2,8 +2,8 @@ const db = require('./index');
 const scoreDB = require('./scores')
 
 let data = [
-    {id: 1, name: 'Stash', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'https://nnhuyen.github.io/HCI-HW1-Elevator/'},
-    {id: 2, name: 'Commits', avatar: 'https://source.unsplash.com/random/2', image: 'https://source.unsplash.com/random/2', url: 'https://en.wikipedia.org/wiki/Llangeinor'},
+    {id: 1, name: 'Huyen', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'https://nnhuyen.github.io/new-hw1/'},
+    {id: 2, name: 'Name', avatar: 'https://source.unsplash.com/random/2', image: 'https://source.unsplash.com/random/2', url: 'https://alex-nguyen.github.io/Elevator/'},
     {id: 3, name: 'Merge', avatar: 'https://source.unsplash.com/random/3', image: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif', url: 'https://en.wikipedia.org/wiki/Gardenia_remyi'},
     {id: 4, name: 'Gardenia', avatar: 'https://source.unsplash.com/random/4', image: 'https://source.unsplash.com/random/4', url: 'https://en.wikipedia.org/wiki/Streetcars_in_Reno'},
     {id: 5, name: 'Barrett', avatar: 'https://source.unsplash.com/random/5', image: 'https://source.unsplash.com/random/5', url: 'https://en.wikipedia.org/wiki/K._K._Barrett'},

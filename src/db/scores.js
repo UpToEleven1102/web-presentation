@@ -1,10 +1,10 @@
 const db = require('./index')
 
 let scores = [
-    {user_id: 1, presenter_id: 1, criteria_1: 8, criteria_2: 9, criteria_3: 1},
-    {user_id: 4, presenter_id: 1, criteria_1: 8, criteria_2: 9, criteria_3: 2},
-    {user_id: 3, presenter_id: 1, criteria_1: 8, criteria_2: 9, criteria_3: 3},
-    {user_id: 2, presenter_id: 3, criteria_1: 8, criteria_2: 9, criteria_3: 1},
+    {user_id: 1, presenter_id: 1, criteria_1: 8, criteria_2: 8, criteria_3: 8, criteria_4: 8, criteria_5: 8},
+    {user_id: 4, presenter_id: 1, criteria_1: 7, criteria_2: 7, criteria_3: 7, criteria_4: 7, criteria_5: 7},
+    {user_id: 3, presenter_id: 1, criteria_1: 1, criteria_2: 1, criteria_3: 3, criteria_4: 1, criteria_5: 1},
+    {user_id: 2, presenter_id: 3, criteria_1: 8, criteria_2: 9, criteria_3: 1, criteria_4: 8, criteria_5: 9},
 ]
 
 function createScore(score) {
