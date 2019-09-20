@@ -1,7 +1,22 @@
 const db = require('./index');
 const scoreDB = require('./scores')
+var fs = require('fs');
+var parse = require('csv-parse');
+const csv = require('csv-parser');
 
-let data = [
+// ------------------------------------------------------------------------
+let data = [];
+
+fs.createReadStream('src/db/presentation.csv')
+    .pipe(csv())
+    .on('data', (row) => {
+        data.push(row)
+    })
+    .on('end', () => {
+        console.log('CSV file successfully processed');
+    });
+
+let data_sample = [
     {id: 1, name: 'Huyen', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'https://nnhuyen.github.io/new-hw1/'},
     {id: 2, name: 'Name', avatar: 'https://source.unsplash.com/random/2', image: 'https://source.unsplash.com/random/2', url: 'https://alex-nguyen.github.io/Elevator/'},
     {id: 3, name: 'Merge', avatar: 'https://source.unsplash.com/random/3', image: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif', url: 'https://en.wikipedia.org/wiki/Gardenia_remyi'},

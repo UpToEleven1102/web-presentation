@@ -12,7 +12,7 @@ const scoreRoutes = require('./routes/scores')
 
 const app = express();
 
-db.initDB();
+db.newUpdate();
 
 // ─────────── Methods ────────────
 app.use(cors())
