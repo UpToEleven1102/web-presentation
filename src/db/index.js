@@ -2,7 +2,9 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = require('../../config/keys').mongoURI;
 const assert = require('assert');
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true  });
+let db = null;
 const dbName = 'web-presentation'
+
 
 function initDB() {
     client.connect(err => {
@@ -13,10 +15,6 @@ function initDB() {
             // get db
             const db = client.db(dbName);
 
-            removeDocument(db, function () {
-                console.log("connection closed")
-                client.close();
-            })
         }
     });
 }
@@ -177,6 +175,7 @@ function getClient() {
 }
 
 module.exports = {
+    client: getClient,
     initDB,
     insertDocuments,
     newInsert,

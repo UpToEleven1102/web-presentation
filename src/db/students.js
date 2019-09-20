@@ -1,7 +1,6 @@
 const db = require('./index');
 const scoreDB = require('./scores')
-var fs = require('fs');
-var parse = require('csv-parse');
+const fs = require('fs');
 const csv = require('csv-parser');
 
 // ------------------------------------------------------------------------
