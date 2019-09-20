@@ -15,14 +15,12 @@ async function createScore(scores) {
     }
 }
 
-function getScoreByPresenterID(id) {
-    return id
-    // return scores.filter(score => score.presenter_id == id)
+async function getScoreByPresenterID(id) {
+    return await getScores({presenter_id: id})
 }
 
-function getScoreByScorerID(id) {
-    return id
-    // return scores.filter(score => score.user_id == id)
+async function getScoreByScorerID(id) {
+    return await getScores({user_id: id})
 }
 
 async function getScores(filter = {}) {
@@ -35,9 +33,9 @@ async function getScores(filter = {}) {
     return r
 }
 
-function getPresenterAvgScore(id) {
-    // const data = scores.filter(score => score.presenter_id === id)
-    const data = []
+async function getPresenterAvgScore(id) {
+    const data = await getScores({presenter_id: id})
+
     let avg = data.length > 0 ? {}: null
     let keys = data.length > 0 ? Object.keys(data[0]).filter(key => key.indexOf('criteria_') === 0) : []
     for (let key of keys) {
