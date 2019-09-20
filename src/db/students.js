@@ -15,21 +15,19 @@ async function getStudents(filter = {}) {
     return r
 }
 
-function putStudent(id, student) {
-    console.log('putting student - id: ', id, 'student ', student);
-    // const client = db.client()
-    // let foundStudent = client.find({name: student.name})
-    let foundStudent = data.find(e => e.id === id)
+async function putStudent(id, student) {
+    try {
+        const client = DB.client()
+        await client.connect();
 
-    if (!foundStudent) {
-        return null;
+        const db = client.db(dbName);
+        const r = await db.collection('student').updateOne({id: id}, {$set: student})
+        await client.close()
+        return r
+    } catch (e) {
+        console.log(e)
+        return e
     }
-
-    foundStudent.url = student.url
-    // upsert db
-    data = data.filter(e => e.name !== foundStudent.name)
-    data = [...data, foundStudent]
-    return foundStudent
 }
 
 async function createStudents(students) {

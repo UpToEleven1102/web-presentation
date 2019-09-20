@@ -17,8 +17,8 @@ router.get('/students', async function (req, res) {
 });
 
 router.put('/students/:id', function(req, res) {
-    result = studentDB.putStudent(parseInt(req.params.id), req.body);
-    res.status(200).send(result)
+    studentDB.putStudent((req.params.id), req.body).then(r => res.status(200).send(''))
+        .catch(err => res.status(500).send(err))
 });
 
 router.get('/students/presenting', function(req, res) {

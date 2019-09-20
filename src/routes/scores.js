@@ -1,18 +1,17 @@
 const router = require('express').Router()
 const db = require('../db/scores')
 
-router.post('', (req, res) => {
-    console.log('creating score', req.body)
-    db.createScore(req.body)
-    res.status(200).send({})
+router.post('', async (req, res) => {
+    const r = await db.createScore([req.body])
+    res.status(200).send(r)
 })
 
 router.get('', (req, res) => {
-    res.status(200).send(db.getScores())
+    db.getScores().then(scores => res.status(200).send(scores)).catch(err => res.status(500).send(err))
 })
 
 router.get('/:id', async (req, res) => {
-    const avg = await db.getPresenterAvgScore(parseInt(req.params.id))
+    const avg = await db.getPresenterAvgScore(req.params.id)
     res.status(200).send(avg)
 })
 
