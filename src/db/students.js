@@ -1,47 +1,18 @@
-const db = require('./index');
-const scoreDB = require('./scores')
-const fs = require('fs');
+const fs = require('fs')
 const csv = require('csv-parser');
 
-// ------------------------------------------------------------------------
-let data = [];
+const DB = require('./index')
+const dbName = require('./index').dbName
+const scoreDB = require('./scores')
 
-fs.createReadStream('src/db/presentation.csv')
-    .pipe(csv())
-    .on('data', (row) => {
-        data.push(row)
-    })
-    .on('end', () => {
-        console.log('CSV file successfully processed');
-    });
+async function getStudents(filter = {}) {
+    const client = DB.client()
+    await client.connect();
 
-let data_sample = [
-    {id: 1, name: 'Huyen', avatar: 'https://source.unsplash.com/random/1', image: 'https://source.unsplash.com/random/1', url: 'https://nnhuyen.github.io/new-hw1/'},
-    {id: 2, name: 'Name', avatar: 'https://source.unsplash.com/random/2', image: 'https://source.unsplash.com/random/2', url: 'https://alex-nguyen.github.io/Elevator/'},
-    {id: 3, name: 'Merge', avatar: 'https://source.unsplash.com/random/3', image: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif', url: 'https://en.wikipedia.org/wiki/Gardenia_remyi'},
-    {id: 4, name: 'Gardenia', avatar: 'https://source.unsplash.com/random/4', image: 'https://source.unsplash.com/random/4', url: 'https://en.wikipedia.org/wiki/Streetcars_in_Reno'},
-    {id: 5, name: 'Barrett', avatar: 'https://source.unsplash.com/random/5', image: 'https://source.unsplash.com/random/5', url: 'https://en.wikipedia.org/wiki/K._K._Barrett'},
-
-]
-
-function getStudents() {
-    data.forEach(e => {
-        const avg = scoreDB.getPresenterAvgScore(e.id)
-        const scores = scoreDB.getScoreByUserID(e.id)
-        e.num_scored = scores.length
-        e.score = avg ? avg : null
-    })
-
-    return data;
-}
-
-function getStudentByID(id) {
-    return data.filter(e => e.id === id)
-}
-
-function postStudent(student) {
-    console.log('post student', student)
-    data = [...data, student]
+    const db = client.db(dbName);
+    const r = await db.collection('student').find(filter).toArray()
+    await client.close()
+    return r
 }
 
 function putStudent(id, student) {
@@ -61,12 +32,59 @@ function putStudent(id, student) {
     return foundStudent
 }
 
+async function createStudents(students) {
+    try {
+        const client = DB.client()
+        await client.connect();
+
+        const db = client.db(dbName);
+        const r = await db.collection('student').insertMany(students)
+
+        await client.close()
+
+        return r.insertedIds
+    } catch (err) {
+        console.log(err.stack);
+    }
+}
+
+async function removeStudents(filter = {}) {
+    try {
+        const client = DB.client()
+        await client.connect();
+
+        const db = client.db(dbName);
+        const r = await db.collection('student').deleteMany(filter)
+        await client.close()
+        return r.deletedCount
+    } catch (err) {
+        console.log(err.stack);
+    }
+}
+
+async function seedStudents() {
+    const r = await removeStudents()
+    console.log('cleared data: ', r)
+    let data = []
+    fs.createReadStream('src/db/presentation.csv')
+        .pipe(csv())
+        .on('data', (row) => {
+            data.push(row)
+        })
+        .on('end', () => {
+            createStudents(data).then(res => {
+                console.log('inserted ids', res)
+            })
+        });
+}
+
+
 module.exports = {
-    data: data,
     getStudents: getStudents,
-    postStudent: postStudent,
     putStudent: putStudent,
-    getStudentByID: getStudentByID,
+    createStudents: createStudents,
+    removeStudents: removeStudents,
+    seedStudents: seedStudents
 }
 
 

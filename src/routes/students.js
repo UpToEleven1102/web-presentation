@@ -6,15 +6,14 @@ const studentDB = require('../db/students')
 let presenting_student = null
 
 router.post('/students', function(req, res) {
-    // students submit info
-    // save to mongo
-    console.log('posting student', req.body)
-    studentDB.postStudent(req.body)
-    res.send({}, 201)
+    studentDB.createStudents([req.body]).then(r => {
+        res.send(r, 201)
+    }).catch(err => res.json({err: err}, 500))
 });
 
-router.get('/students', function (req, res) {
-    res.status(200).send(studentDB.getStudents())
+router.get('/students', async function (req, res) {
+    const data = await studentDB.getStudents()
+    res.status(200).send(data)
 });
 
 router.put('/students/:id', function(req, res) {
