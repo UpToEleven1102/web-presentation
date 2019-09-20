@@ -26,7 +26,7 @@ async function seedStudents() {
     const r = await studentConn.deleteMany({})
     console.log('removed : ', r)
     let data = []
-    fs.createReadStream('src/db/presentation.csv')
+    fs.createReadStream('src/db/presentation2.csv')
         .pipe(csv())
         .on('data', (row) => {
             data.push(row)
