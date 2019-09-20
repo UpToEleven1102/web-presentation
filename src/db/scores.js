@@ -3,12 +3,9 @@ const dbName = require('./index').dbName
 
 async function createScore(scores) {
     try {
-        const client = DB.client()
-        await client.connect();
+        const client = DB.scoreConn()
 
-        const db = client.db(dbName);
-        const r = await db.collection('score').insertMany(scores)
-        await client.close()
+        const r = await client.insertMany(scores)
         return r.insertedIds
     } catch (e) {
         console.log(e)
@@ -24,12 +21,9 @@ async function getScoreByScorerID(id) {
 }
 
 async function getScores(filter = {}) {
-    const client = DB.client()
-    await client.connect();
+    const client = DB.scoreConn()
 
-    const db = client.db(dbName);
-    const r = await db.collection('score').find(filter).toArray()
-    await client.close()
+    const r = await client.find(filter).toArray()
     return r
 }
 

@@ -6,23 +6,16 @@ const dbName = require('./index').dbName
 const scoreDB = require('./scores')
 
 async function getStudents(filter = {}) {
-    const client = DB.client()
-    await client.connect();
-
-    const db = client.db(dbName);
-    const r = await db.collection('student').find(filter).toArray()
-    await client.close()
+    const client = DB.studentConn()
+    const r = await client.find(filter).toArray()
     return r
 }
 
 async function putStudent(id, student) {
     try {
-        const client = DB.client()
-        await client.connect();
+        const client = DB.studentConn()
 
-        const db = client.db(dbName);
-        const r = await db.collection('student').updateOne({id: id}, {$set: student})
-        await client.close()
+        const r = await client.updateOne({id: id}, {$set: student})
         return r
     } catch (e) {
         console.log(e)
@@ -32,13 +25,9 @@ async function putStudent(id, student) {
 
 async function createStudents(students) {
     try {
-        const client = DB.client()
-        await client.connect();
+        const client = DB.studentConn()
 
-        const db = client.db(dbName);
-        const r = await db.collection('student').insertMany(students)
-
-        await client.close()
+        const r = await client.insertMany(students)
 
         return r.insertedIds
     } catch (err) {
@@ -48,12 +37,9 @@ async function createStudents(students) {
 
 async function removeStudents(filter = {}) {
     try {
-        const client = DB.client()
-        await client.connect();
+        const client = DB.studentConn()
 
-        const db = client.db(dbName);
-        const r = await db.collection('student').deleteMany(filter)
-        await client.close()
+        const r = await client.deleteMany(filter)
         return r.deletedCount
     } catch (err) {
         console.log(err.stack);
@@ -62,7 +48,7 @@ async function removeStudents(filter = {}) {
 
 async function seedStudents() {
     const r = await removeStudents()
-    console.log('cleared data: ', r)
+    console.log('removed : ', r)
     let data = []
     fs.createReadStream('src/db/presentation.csv')
         .pipe(csv())

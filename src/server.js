@@ -1,10 +1,11 @@
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
-const db = require('./db/students')
+const db_student = require('./db/students')
+const db = require('./db/index')
 const cors = require('cors')
 
-// db.seedStudents()
+db.createClient()
 
 const generalRoutes = require('./routes/main')
 const studentRoutes = require('./routes/students')
