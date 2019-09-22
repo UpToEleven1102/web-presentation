@@ -17,7 +17,7 @@ function createClient() {
         studentConn = db.collection('student')
         scoreConn = db.collection('score')
         console.log('Connected to DB')
-        // seedStudents()
+        seedStudents()
     }).catch(err => console.log('Failed to connect to DB -' +
         ' ', err))
 }
